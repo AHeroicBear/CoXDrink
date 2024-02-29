@@ -43,8 +43,8 @@ public class CoXDrinkPlugin extends Plugin
 
 				// Check adjacent 4 tiles
 				if (findTileObject(client.getPlane(), playerLocation.dx(-1), ENERGY_WELL_OBJECT_ID) != null ||
-					findTileObject(client.getPlane(), playerLocation.dx(1), ENERGY_WELL_OBJECT_ID) != null &&
-					findTileObject(client.getPlane(), playerLocation.dy(-1), ENERGY_WELL_OBJECT_ID) != null &&
+					findTileObject(client.getPlane(), playerLocation.dx(1), ENERGY_WELL_OBJECT_ID) != null ||
+					findTileObject(client.getPlane(), playerLocation.dy(-1), ENERGY_WELL_OBJECT_ID) != null ||
 					findTileObject(client.getPlane(), playerLocation.dy(1), ENERGY_WELL_OBJECT_ID) != null)
 				{
 					player.setOverheadText(config.message());
