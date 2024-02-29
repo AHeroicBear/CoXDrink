@@ -39,24 +39,17 @@ public class CoXDrinkPlugin extends Plugin
 		if (event.getActor() instanceof Player) {
 			if(event.getActor().getAnimation() == LOOKING_INTO_ANIMATION_ID) {
 				Player player = (Player) event.getActor();
-				var playerLocation = event.getActor().getWorldLocation();
+				var playerLocation = player.getWorldLocation();
 
 				// Check adjacent 4 tiles
-				final TileObject tileObject1 = findTileObject(client.getPlane(), playerLocation.dx(-1), ENERGY_WELL_OBJECT_ID);
-				final TileObject tileObject2 = findTileObject(client.getPlane(), playerLocation.dx(1), ENERGY_WELL_OBJECT_ID);
-				final TileObject tileObject3 = findTileObject(client.getPlane(), playerLocation.dy(-1), ENERGY_WELL_OBJECT_ID);
-				final TileObject tileObject4 = findTileObject(client.getPlane(), playerLocation.dy(1), ENERGY_WELL_OBJECT_ID);
-
-				if (tileObject1 == null &&
-					tileObject2 == null &&
-					tileObject3 == null &&
-					tileObject4 == null)
+				if (findTileObject(client.getPlane(), playerLocation.dx(-1), ENERGY_WELL_OBJECT_ID) != null ||
+					findTileObject(client.getPlane(), playerLocation.dx(1), ENERGY_WELL_OBJECT_ID) != null &&
+					findTileObject(client.getPlane(), playerLocation.dy(-1), ENERGY_WELL_OBJECT_ID) != null &&
+					findTileObject(client.getPlane(), playerLocation.dy(1), ENERGY_WELL_OBJECT_ID) != null)
 				{
-					return;
+					player.setOverheadText(config.message());
+					player.setOverheadCycle(CYCLES_FOR_OVERHEAD_TEXT);
 				}
-
-				player.setOverheadText(config.message());
-				player.setOverheadCycle(CYCLES_FOR_OVERHEAD_TEXT);
 			}
 		}
 	}
